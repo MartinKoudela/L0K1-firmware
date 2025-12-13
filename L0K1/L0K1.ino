@@ -1,10 +1,13 @@
+#define BTN_PIN 4
+
 void setup() {
   Serial.begin(115200);
-  delay(1000);
-  Serial.println("L0k1 boot OK");
+  pinMode(BTN_PIN, INPUT_PULLUP);
 }
 
 void loop() {
-  Serial.println("L0k1 is alive");
-  delay(1000);
+  if (digitalRead(BTN_PIN) == LOW) {
+    Serial.println("BUTTON PRESSED");
+    delay(300); // debounce
+  }
 }
